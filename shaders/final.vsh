@@ -18,9 +18,9 @@ void main(){
 
     float mixDay_temp;
 
-    if(worldTime < 500){
-        mixDay_temp = (500.0 + worldTime);
-    }else if (worldTime > 11500 && worldTime < 23500){
+    if(worldTime<500){
+        mixDay_temp = 500 + worldTime;
+    }else if(worldTime > 11500 && worldTime < 23500){
         mixDay_temp = 12500 - worldTime;
     }else if(worldTime >= 23500){
         mixDay_temp = (worldTime - 23500.0);

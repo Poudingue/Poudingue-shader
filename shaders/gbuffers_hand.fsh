@@ -11,6 +11,7 @@ uniform sampler2D gcolor ;
 uniform sampler2D gnormal;
 uniform sampler2D gdepth ;
 
+varying vec3 normal;
 varying vec4 texcoord;
 
 void linearize(inout vec3 color, float gamma){
@@ -18,10 +19,9 @@ void linearize(inout vec3 color, float gamma){
 }
 
 void main(){
-    gl_FragData[0] = texture2D(texture, texcoord.st);
-    vec4 lm = texture2D(gdepth, texcoord.st);
-    linearize(lm.rgb,2);
-    gl_FragData[1] = lm;
-    gl_FragData[2] = vec4(texture2D(gnormal, texcoord.st).rgb,1);
+    vec4 handColor = texture2D(texture, texcoord.st).rgba;
+    linearize(handColor.rgb,2);
 
+    gl_FragData[0] = vec4(handColor);
+    gl_FragData[2] = vec4(normal*.5+.5,0);//vec4(.5*normal+.5, 0);//blockColor.a);
 }

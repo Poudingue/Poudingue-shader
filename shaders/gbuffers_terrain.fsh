@@ -12,6 +12,7 @@ varying vec3 normal;
 varying float depth;
 
 varying vec4 texcoord;
+varying vec4 lm_coord;
 
 void linearize(inout vec3 color, float gamma){
     color = pow(color, vec3(1.0/gamma));
@@ -23,6 +24,6 @@ void main(){
     blockColor.rgb *= tintColor;
 
     gl_FragData[0] = vec4(blockColor);
-    gl_FragData[1] = vec4(depth);
-    gl_FragData[2] = vec4(.5*normal+.5, 1);//blockColor.a);
+    gl_FragData[1] = vec4(lm_coord.st / 256.0, 0.0, 0.0);
+    gl_FragData[2] = vec4(.5*normal+.5, depth);//blockColor.a);
 }

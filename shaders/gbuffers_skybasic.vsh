@@ -1,8 +1,8 @@
 #version 120
 
-varying vec3 tintColor;
+varying vec4 texcoord;
 
 void main(){
     gl_Position = ftransform();
-    tintColor   = gl_Color.rgb;
+    texcoord    = gl_MultiTexCoord0;
 }
